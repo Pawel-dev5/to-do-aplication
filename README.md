@@ -74,24 +74,16 @@ yarn add @fortawesome/fontawesome-svg-core<br/>
 yarn add @fortawesome/free-solid-svg-icons<br/>
 yarn add @fortawesome/react-fontawesome
 
-[jspdf](https://www.npmjs.com/package/jspdf). A library to generate PDFs in JavaScript.
 ### NPM 
-npm i jspdf
+[jspdf](https://www.npmjs.com/package/jspdf). A library to generate PDFs in JavaScript. `npm i jspdf`
 
-[jsPDF-AutoTable](https://www.npmjs.com/package/jspdf-autotable) - Table plugin for jsPDF
-npm i jspdf-autotable
+[jsPDF-AutoTable](https://www.npmjs.com/package/jspdf-autotable) - Table plugin for jsPDF. `npm i jspdf-autotable`
 
-[React Bootstrap](https://www.npmjs.com/package/react-bootstrap)
-### NPM
-npm i react-bootstrap
+[React Bootstrap](https://www.npmjs.com/package/react-bootstrap). `npm i react-bootstrap`
 
-[React-csv](https://www.npmjs.com/package/react-csv)
-### NPM
-npm i react-csv
+[React-csv](https://www.npmjs.com/package/react-csv). `npm i react-csv`
 
-[React-joyride](https://www.npmjs.com/package/react-joyride)
-### NPM
-npm i react-joyride
+[React-joyride](https://www.npmjs.com/package/react-joyride). `npm i react-joyride`
 
 ### `yarn build` fails to minify
 
