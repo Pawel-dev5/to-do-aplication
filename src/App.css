@@ -1,7 +1,21 @@
+/* @import '~mdb-ui-kit/css/mdb.min.css'; */
+
 .App {
   text-align: center;
+  padding-top: 30px;
+  background-image: url("../src/assets/tv.jpg");
+  background-size: cover;
+  min-height: 1000px;
+  font-family: "Roboto Mono", monospace;
+  background-position-x: center;
 }
-
+.modal-content,
+.react-joyride__tooltip {
+  font-family: "Roboto Mono", monospace;
+}
+.react-joyride__tooltip > div:nth-child(2) > button {
+  background-color: #0069d9 !important;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
@@ -35,4 +49,78 @@
   to {
     transform: rotate(360deg);
   }
+}
+.container-list {
+  max-width: 90vh;
+  margin: auto;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.9);
+}
+
+.header-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.filter-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.filter-container > form {
+  width: 50%;
+  padding: 5px;
+}
+.filter-container > p {
+  margin-bottom: 0;
+  padding: 10px;
+}
+.icon-delete {
+  color: red;
+  cursor: pointer;
+}
+.add-icon {
+  margin-left: 10px;
+}
+.clear-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  margin: 30px 0 10px 0;
+}
+.clear-container > h6 {
+  margin-bottom: 0;
+}
+.clear-container > div > button {
+  font-size: 12px;
+  margin-right: 5px;
+}
+.table {
+  background-color: white;
+}
+@media (max-width: 560px) {
+  .table {
+    overflow: scroll;
+    display: flow-root;
+    flex-direction: column;
+  }
+}
+.icon-edit {
+  margin-right: 10px;
+  color: #0069d9;
+}
+.download-icon {
+  margin-left: 10px;
+}
+.pdf-button {
+  margin-left: 10px;
+}
+.fa-lg {
+  margin-right: 10px;
+}
+tbody > tr:nth-child(1) > td:nth-child(5) {
+  min-width: 90px;
 }

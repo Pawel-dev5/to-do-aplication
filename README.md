@@ -65,6 +65,34 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/a
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
 
+## Install to deploy the basis:
+[Create React App](https://github.com/facebook/create-react-app)
+
+[Fontawesome](https://fontawesome.com/how-to-use/on-the-web/using-with/react)
+# yarn
+yarn add @fortawesome/fontawesome-svg-core
+yarn add @fortawesome/free-solid-svg-icons
+yarn add @fortawesome/react-fontawesome
+
+[jspdf](https://www.npmjs.com/package/jspdf). A library to generate PDFs in JavaScript.
+# NPM 
+npm i jspdf
+
+[jsPDF-AutoTable](https://www.npmjs.com/package/jspdf-autotable) - Table plugin for jsPDF
+npm i jspdf-autotable
+
+[React Bootstrap](https://www.npmjs.com/package/react-bootstrap)
+# NPM
+npm i react-bootstrap
+
+[React-csv](https://www.npmjs.com/package/react-csv)
+# NPM
+npm i react-csv
+
+[React-joyride](https://www.npmjs.com/package/react-joyride)
+# NPM
+npm i react-joyride
+
 ### `yarn build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
