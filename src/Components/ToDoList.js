@@ -38,12 +38,11 @@ export default function FilmList(props) {
     // Table counter
     const count = sumData.length;
     // CSV export headers. To export use https://www.npmjs.com/package/react-csv
-    const headers2 = [
-        { label: "Tytuł", key: "title" },
-        { label: "Autor", key: "name" },
-        { label: "Kategoria", key: "category" },
-        { label: "Priorytet", key: "priority" }
-    ];
+    // const headers2 = [
+    //     { label: "Autor", key: "name" },
+    //     { label: "Kategoria", key: "category" },
+    //     { label: "Priorytet", key: "priority" }
+    // ];
     // PDF exports, use https://www.npmjs.com/package/jspdf and https://www.npmjs.com/package/jspdf-autotable
     function exportPDF() {
         const unit = "pt";
@@ -54,11 +53,11 @@ export default function FilmList(props) {
         const doc = new jsPDF(orientation, unit, size);
 
         doc.setFontSize(15);
-        doc.setLanguage("pl-Pl")
+        doc.setLanguage("en-EN")
 
 
-        const title = "Lista filmów do obejrzenia";
-        const headers = [["Tytul", "Autor", "Kategoria", "Priorytet"]];
+        const title = "To Do List";
+        const headers = [["Title", "Comments", "Category", "Priority"]];
 
         const data = sumData.map(elt => [elt.title, elt.name, elt.category, elt.priority]);
 
@@ -70,7 +69,7 @@ export default function FilmList(props) {
 
         doc.text(title, marginLeft, 40);
         doc.autoTable(content);
-        doc.save("Lista filmów.pdf")
+        doc.save("To Do List.pdf")
     }
     // Function clear category filter
     function ClearFilter() {
@@ -191,53 +190,44 @@ export default function FilmList(props) {
                 <div>
                     <div className="header-container">
                         <Button variant="primary" onClick={handleShow} >
-                            Dodaj film
+                            New Task
                         <FontAwesomeIcon className="add-icon" icon={faPlusCircle} />
                         </Button>
                         <div className="clear-container">
-                            <h6>Filmy do obejrzenia: {count}</h6>
+                            <h4>List Name: {count}</h4>
                             <div>
-                                <Button onClick={clearAll} variant="primary" className="btn-rmv">Wyczyść listę</Button>
-                                <Button onClick={ClearFilter}>Wyczyść filtr</Button>
+                                <Button onClick={clearAll} variant="primary" className="btn-rmv">Clear All</Button>
+                                <Button onClick={ClearFilter}>Clear Filters</Button>
                             </div>
                         </div>
                         <div className="filter-container">
                             <Form>
                                 <Form.Group controlId="exampleForm.SelectCustom">
-                                    <Form.Label>Sortowanie:</Form.Label>
+                                    <Form.Label>Sort:</Form.Label>
                                     <Form.Control as="select" custom value={sort} onClick={sorted} onChange={setSortValue}>
-                                        <option value="title">Tytuł</option>
+                                        <option value="title">Title</option>
                                         <option value="name">Autor</option>
-                                        <option value="category">Kategoria</option>
-                                        <option value="priority">Priorytet</option>
+                                        <option value="category">Category</option>
+                                        <option value="priority">Priority</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Form>
                             <Form>
                                 <Form.Group controlId="exampleForm.SelectCustom">
-                                    <Form.Label>Filtr kategorii:</Form.Label>
+                                    <Form.Label>Category Filter:</Form.Label>
                                     <Form.Control as="select" custom onClick={filter}>
-                                        <option value="Kryminał" onChange={setFilterValue}>Kryminał</option>
-                                        <option value="Science-fiction" onChange={setFilterValue}>Science-fiction</option>
-                                        <option value="Fantasy">Fantasy</option>
-                                        <option value="Poezja">Poezja</option>
-                                        <option value="Dramat" onChange={setFilterValue}>Dramat</option>
-                                        <option value="Nauki ścisłe">Nauki ścisłe</option>
+                                        <option value="Fruits" onChange={setFilterValue}>Fruits</option>
+                                        <option value="Vegetables" onChange={setFilterValue}>Vegetables</option>
+                                        <option value="Cheese"  onChange={setFilterValue}>Cheese</option>
+                                        <option value="Drinks"  onChange={setFilterValue}>Drinks</option>
+                                        <option value="Meat" onChange={setFilterValue}>Meat</option>
+                                        <option value="Chemistry">Chemistry</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Form>
                         </div>
                     </div>
                     <Table striped bordered hover>
-                        <thead>
-                            <tr>
-                                <th>Tytuł</th>
-                                <th>Autor</th>
-                                <th>Kategoria</th>
-                                <th>Priorytet</th>
-                                <th className="guide">Action</th>
-                            </tr>
-                        </thead>
                         <tbody>
                             {sumData.map((d, index) => {
                                 return (
@@ -272,14 +262,14 @@ export default function FilmList(props) {
                     </Table>
                     {sumData.length !== 0 ? (
                         <>
-                            <CSVLink data={data[0]} headers={headers2} filename={"Lista filmów.csv"} separator={';'}>
+                            {/* <CSVLink data={data[0]} headers={headers2} filename={"ToDo List.csv"} separator={';'}>
                                 <Button>
-                                    Pobierz CSV
+                                    CSV
                                     <FontAwesomeIcon className="download-icon" icon={faFileCsv} />
                                 </Button>
-                            </CSVLink>
+                            </CSVLink> */}
                             <Button className="pdf-button" onClick={() => exportPDF()}>
-                                Generuj PDF
+                                PDF
                                 <FontAwesomeIcon className="download-icon" icon={faFilePdf} />
                             </Button>
                         </>

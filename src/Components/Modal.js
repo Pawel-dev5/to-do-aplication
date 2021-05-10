@@ -19,7 +19,7 @@ export default function ModalBox(props) {
         <>
             <Modal show={show} onHide={handleClose} data={data}>
                 <Modal.Header closeButton>
-                    <Modal.Title>Dodaj film</Modal.Title>
+                    <Modal.Title>Add Task</Modal.Title>
                 </Modal.Header>
                 <Modal.Body>
                     <AddForm
@@ -35,10 +35,10 @@ export default function ModalBox(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
-                        Zamknij
+                        Close
                     </Button>
                     <Button variant="primary" onClick={add} >
-                        Dodaj
+                        Add
                     </Button>
                 </Modal.Footer>
             </Modal>

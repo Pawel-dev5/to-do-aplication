@@ -1,5 +1,5 @@
 import './App.css';
-import FilmList from "./Components/FilmList";
+import ToDoList from "./Components/ToDoList";
 import { useState, useEffect } from "react";
 import * as _ from "lodash";
 import PageGuide from "./Components/PageGuide";
@@ -108,7 +108,7 @@ function App() {
   return (
     <div className="App">
       <PageGuide />
-      <FilmList
+      <ToDoList
         sort={sort}
         sorted={sorted}
         setSortValue={setSortValue}

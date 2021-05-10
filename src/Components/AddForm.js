@@ -16,19 +16,19 @@ export default function AddForm(props) {
                     <Form.Control type="text" placeholder="Autor" onChange={changeAutor} />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Kategoria</Form.Label>
+                    <Form.Label>Category</Form.Label>
                     <Form.Control as="select" onChange={changeCat}>
                         <option> </option>
-                        <option>Kryminał</option>
-                        <option>Science-fiction</option>
-                        <option>Fantasy</option>
-                        <option>Poezja</option>
-                        <option>Dramat</option>
-                        <option>Nauki ścisłe</option>
+                        <option>Fruits</option>
+                        <option>Vegetables</option>
+                        <option>Cheese</option>
+                        <option>Drinks</option>
+                        <option>Meat</option>
+                        <option>Chemistry</option>
                     </Form.Control>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
-                    <Form.Label>Priorytet</Form.Label>
+                    <Form.Label>Prioryty</Form.Label>
                     <Form.Control as="select" onChange={changePri}>
                         <option> </option>
                         <option>1</option>

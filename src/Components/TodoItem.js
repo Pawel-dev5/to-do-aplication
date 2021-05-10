@@ -84,19 +84,19 @@ export default function ToDoItem(props) {
                             <Form.Control type="text" placeholder={d.name} onChange={changeAutor} />
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlSelect1">
-                            <Form.Label>Kategoria</Form.Label>
+                            <Form.Label>Category</Form.Label>
                             <Form.Control as="select" value={d.category} onChange={changeCat}>
                                 <option> </option>
-                                <option>Kryminał</option>
-                                <option>Science-fiction</option>
-                                <option>Fantasy</option>
-                                <option>Poezja</option>
-                                <option>Dramat</option>
-                                <option>Nauki ścisłe</option>
+                                <option>Friuts</option>
+                                <option>Vegetables</option>
+                                <option>Meat</option>
+                                <option>Cheese and Milk</option>
+                                <option>Chemistry</option>
+                                <option>Others</option>
                             </Form.Control>
                         </Form.Group>
                         <Form.Group controlId="exampleForm.ControlSelect1">
-                            <Form.Label>Priorytet</Form.Label>
+                            <Form.Label>Priority</Form.Label>
                             <Form.Control as="select" value={d.priority} onChange={changePri}>
                                 <option> </option>
                                 <option>1</option>
@@ -127,10 +127,45 @@ export default function ToDoItem(props) {
                 onDragLeave={onDragLeave}
                 className={dragAndDrop && dragAndDrop.draggedTo === Number(index) ? "dropArea" : ""}
             >
-                <td>{d.title}</td>
-                <td>{d.name}</td>
-                <td>{d.category}</td>
-                <td>{d.priority}</td>
+                <td><i class="bi bi-check"></i></td>
+                <td>
+                    <table className="table table-striped table-bordered table-hover inline-table">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {d.title}
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    <p>
+                                        {d.name}
+                                    </p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </td>
+                <td>
+                    <div className="inline-table-box">
+
+                        <div className="mark-box">
+                            <p>
+                                {d.category}
+                            </p>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div className="inline-table-box">
+
+                        <div className="mark-box">
+                            <p>
+                                {d.priority}
+                            </p>
+                        </div>
+                    </div>
+                </td>
                 <td>
                     <FontAwesomeIcon className="fa-lg" icon={faArrowsAltV} />
                     <FontAwesomeIcon className="icon-edit" onClick={showw} icon={faEdit} />
