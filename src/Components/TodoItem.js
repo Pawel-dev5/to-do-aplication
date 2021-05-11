@@ -49,20 +49,23 @@ export default function ToDoItem(props) {
                 onDragOver={onDragOver}
                 onDrop={onDrop}
                 onDragLeave={onDragLeave}
-                className={dragAndDrop && dragAndDrop.draggedTo === Number(index) ? "dropArea" : "" && "todo"}
+                className={dragAndDrop && dragAndDrop.draggedTo === Number(index) ? "dropArea" : ""}
             >
                 <td>
                     {!d.status ? (
                         <>
                             <FontAwesomeIcon
                                 onClick={() => updateItem(id, 'status', 'Done')}
-                                icon={faCircle} />
+                                icon={faCircle}
+                                className="circle"
+                            />
                         </>
                     ) : (
                         <>
                             <FontAwesomeIcon
                                 onClick={() => updateItem(id, 'status', '')}
                                 icon={faCheckCircle}
+                                className="circle-done"
                             />
                         </>
                     )}
@@ -76,7 +79,7 @@ export default function ToDoItem(props) {
                                 </td>
                             </tr>
                             <tr className={`${d.status ? "done" : ""}`}>
-                                <td>
+                                <td className="comment-container">
                                     <p>
                                         {d.name}
                                     </p>

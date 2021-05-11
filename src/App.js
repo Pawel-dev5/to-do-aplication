@@ -83,7 +83,7 @@ function App() {
   function clearAll() {
     return setSumData([])
   }
-  
+
   // Handle modal form values
   const changeAutor = (e) => {
     const index = sumData.length;
