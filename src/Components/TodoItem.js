@@ -28,36 +28,70 @@ export default function ToDoItem(props) {
         data,
         setSumData,
         handleShowEdit,
-        changeStatusItem
+        // changeStatusItem
     } = props;
     const defaultShow = false;
     const [showEdit, setShowEdit] = useState(defaultShow);
-    const [editData, setEditData] = useState(d);
-    const [editedData, setEditedData] = useState({});
-    const [categoryColor, setCategoryColor] = useState(d.category);
+    const [editData, setEditData] = useState(sumData[id]);
+    // const [editedData, setEditedData] = useState({});
+    // const [categoryColor, setCategoryColor] = useState(d.category);
     const [color, setColor] = useState("mark-box");
 
-
+    console.log(editData)
     // function showw() {
     //     console.log(editedData)
     //     handleShow()
     //     return setEditData(d)
     // }
+    function changeStatusItem(id) {
+        if (editData.status.length === 0) {
+            setEditData(prevState => ({
+                ...prevState,
+                status: "Done"
+            }))
+        } else {
+            setEditData(prevState => ({
+                ...prevState,
+                status: ""
+            })
+            )
+        
+            // setSumData(prevState => ({
+            //         ...prevState,
+            //         editData
+            //     }
+            //     ))
+        }
+        let newTab = [...sumData, editData]
+        setSumData(newTab)
+        console.log(sumData)
+        console.log(editData)
 
-    // const changeStatusItem = () => {
-    //     if (editData.status.length === 0) {
-    //       // e.preventDefault();
-    //       return setEditData(prevState => ({
-    //         ...prevState,
-    //         status: "Done"
-    //       }))
-    //     } else {
-    //       return setEditData(prevState => ({
-    //         ...prevState,
-    //         status: ""
-    //       }))
-    //     }
-    //   };
+        // const changeStatusItems = (id) => {
+        // console.log(editData.status)
+        // setEditData({
+        //     ...editData,
+        //     status: "done"
+        // })
+        // };
+        // changeStatusItems(id)
+        // return editData
+        // let newTab = [...sumData, editData]
+        // setSumData(newTab)
+        // return setSumData(prevState => ({
+        //     ...prevState,
+        //     changeStatusItems(id)
+        // }))
+    }
+    // console.log(editData)
+    // setSumData(prevState => ({
+    //     ...prevState,
+    //     editData
+    // }
+    // ))
+    // let newTab = [...sumData, editData]
+    // setSumData(newTab)
+    // console.log(sumData)
 
     return (
         <>
@@ -75,16 +109,16 @@ export default function ToDoItem(props) {
                     {/* <i className="bi bi-check"></i> */}
                     {!d.status ? (
                         <>
-                            <FontAwesomeIcon onClick={() => { changeStatusItem(id)}} icon={faCircle} />
+                            <FontAwesomeIcon onClick={changeStatusItem} icon={faCircle} />
                         </>
                     ) : (
                         <>
-                            <FontAwesomeIcon  onClick={changeStatusItem} icon={faCheckCircle} />
+                            <FontAwesomeIcon onClick={changeStatusItem} icon={faCheckCircle} />
                         </>
                     )}
                     <div className="on-icon">
                         {/* <button id="helpButtons" type="button" value="Done" onClick={changeStatus}> */}
-                            {/* <FontAwesomeIcon className="in-progress-icon" onClick={changeStatus} icon={faCircle} /> */}
+                        {/* <FontAwesomeIcon className="in-progress-icon" onClick={changeStatus} icon={faCircle} /> */}
                         {/* </button> */}
                     </div>
                     {/* <FontAwesomeIcon className="done-icon"  icon={faCheckCircle} /> */}

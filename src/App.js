@@ -83,16 +83,20 @@ function App() {
   function clearAll() {
     return setSumData([])
   }
+  
   // edit item from table
   function changeStatusItem(id) {
     console.log(sumData[id]);
-
+    const edit = [sumData[id]]
+    console.log(edit)
+    console.log(sumData)
+    console.log(data)
     
-    setSumData(prevData => {
-      return prevData.filter((d, index) => {
-        return prevData;
-      })
-    });
+      // setSumData(prevData => {
+      //   return prevData.filter((d, index) => {
+      //     return prevData;
+      //   })
+      // });
   }
   // Handle modal form values
   const changeAutor = e => {
@@ -164,7 +168,7 @@ function App() {
       }))
     }
   };
-  
+
   const handleChangeWho = e => {
     const { value } = e.target;
     setData(prevState => ({
