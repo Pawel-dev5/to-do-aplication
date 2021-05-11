@@ -35,7 +35,8 @@ export default function TodoList(props) {
         filter,
         setFilterValue,
         changeStatus,
-        handleChangeWho
+        handleChangeWho,
+        changeStatusItem
         // filtr
     } = props;
 
@@ -315,6 +316,7 @@ export default function TodoList(props) {
                                         dragAndDrop={dragAndDrop}
                                         onDragLeave={onDragLeave}
                                         changeStatus={changeStatus}
+                                        changeStatusItem={changeStatusItem}
                                     />
                                     </>
                                 )

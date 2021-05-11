@@ -83,6 +83,17 @@ function App() {
   function clearAll() {
     return setSumData([])
   }
+  // edit item from table
+  function changeStatusItem(id) {
+    console.log(sumData[id]);
+
+    
+    setSumData(prevData => {
+      return prevData.filter((d, index) => {
+        return prevData;
+      })
+    });
+  }
   // Handle modal form values
   const changeAutor = e => {
     const { value } = e.target;
@@ -153,12 +164,7 @@ function App() {
       }))
     }
   };
-
-  // if (data.status.length === 0) {
-    
-  // }
-console.log(data.status.length)
-
+  
   const handleChangeWho = e => {
     const { value } = e.target;
     setData(prevState => ({
@@ -194,6 +200,7 @@ console.log(data.status.length)
         filtr={filtr}
         changeStatus={changeStatus}
         handleChangeWho={handleChangeWho}
+        changeStatusItem={changeStatusItem}
       />
     </div>
   );

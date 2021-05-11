@@ -27,7 +27,8 @@ export default function ToDoItem(props) {
         sumData,
         data,
         setSumData,
-        handleShowEdit
+        handleShowEdit,
+        changeStatusItem
     } = props;
     const defaultShow = false;
     const [showEdit, setShowEdit] = useState(defaultShow);
@@ -43,20 +44,20 @@ export default function ToDoItem(props) {
     //     return setEditData(d)
     // }
 
-    const changeStatusItem = () => {
-        if (editData.status.length === 0) {
-          // e.preventDefault();
-          return setEditData(prevState => ({
-            ...prevState,
-            status: "Done"
-          }))
-        } else {
-          return setEditData(prevState => ({
-            ...prevState,
-            status: ""
-          }))
-        }
-      };
+    // const changeStatusItem = () => {
+    //     if (editData.status.length === 0) {
+    //       // e.preventDefault();
+    //       return setEditData(prevState => ({
+    //         ...prevState,
+    //         status: "Done"
+    //       }))
+    //     } else {
+    //       return setEditData(prevState => ({
+    //         ...prevState,
+    //         status: ""
+    //       }))
+    //     }
+    //   };
 
     return (
         <>
@@ -72,9 +73,9 @@ export default function ToDoItem(props) {
             >
                 <td>
                     {/* <i className="bi bi-check"></i> */}
-                    {!editData.status ? (
+                    {!d.status ? (
                         <>
-                            <FontAwesomeIcon  onClick={changeStatusItem} icon={faCircle} />
+                            <FontAwesomeIcon onClick={() => { changeStatusItem(id)}} icon={faCircle} />
                         </>
                     ) : (
                         <>
@@ -91,15 +92,15 @@ export default function ToDoItem(props) {
                 <td>
                     <table className="table table-striped table-bordered table-hover inline-table">
                         <tbody>
-                            <tr className={`${editData.status ? "done" : ""}`}>
+                            <tr className={`${d.status ? "done" : ""}`}>
                                 <td>
-                                    {editData.title}
+                                    {d.title}
                                 </td>
                             </tr>
-                            <tr className={`${editData.status ? "done" : ""}`}>
+                            <tr className={`${d.status ? "done" : ""}`}>
                                 <td>
                                     <p>
-                                        {editData.name}
+                                        {d.name}
                                     </p>
                                 </td>
                             </tr>
@@ -108,7 +109,7 @@ export default function ToDoItem(props) {
                 </td>
                 <td>
                     <div className="inline-table-box">
-                        <div className={`${color} ${editData.status ? "done" : ""}`}>
+                        <div className={`${color} ${d.status ? "done" : ""}`}>
                             <p>
                                 {d.category}
                             </p>
@@ -117,9 +118,9 @@ export default function ToDoItem(props) {
                 </td>
                 <td>
                     <div className="inline-table-box">
-                        <div className={`${color} ${editData.status ? "done" : ""}`}>
+                        <div className={`${color} ${d.status ? "done" : ""}`}>
                             <p>
-                                {editData.priority}
+                                {d.priority}
                             </p>
                         </div>
                     </div>
@@ -130,33 +131,6 @@ export default function ToDoItem(props) {
                     <FontAwesomeIcon className="icon-delete" onClick={() => { onCheck(id) }} icon={faTrash} />
                 </td>
             </tr>
-            {/* {editedData ? (
-                <>
-                    <tr>
-                        <td>{editedData.title}</td>
-                        <td>{editedData.name}</td>
-                        <td>{editedData.category}</td>
-                        <td>{editedData.priority}</td>
-                        <td>
-                            <FontAwesomeIcon className="icon-edit" onClick={showw} icon={faEdit} />
-                            <FontAwesomeIcon className="icon-delete" onClick={() => { onCheck(id) }} icon={faTrash} />
-                        </td>
-                    </tr>
-                </>
-            ) : (
-                    <>
-                        <tr>
-                            <td>{d.title}</td>
-                            <td>{d.name}</td>
-                            <td>{d.category}</td>
-                            <td>{d.priority}</td>
-                            <td>
-                                <FontAwesomeIcon className="icon-edit" onClick={showw} icon={faEdit} />
-                                <FontAwesomeIcon className="icon-delete" onClick={() => { onCheck(id) }} icon={faTrash} />
-                            </td>
-                        </tr>
-                    </>
-                )} */}
         </>
     )
 };
