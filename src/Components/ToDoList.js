@@ -9,9 +9,6 @@ import { CSVLink } from "react-csv";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import { useState } from "react";
-import Modal from 'react-bootstrap/Modal';
-// import Button from 'react-bootstrap/Button';
-// import Form from 'react-bootstrap/Form';
 
 export default function TodoList(props) {
     const {
@@ -34,60 +31,8 @@ export default function TodoList(props) {
         setSumData,
         filter,
         setFilterValue,
-        changeStatus,
-        handleChangeWho,
-        changeStatusItem
-        // filtr
     } = props;
 
-    const defaultShow = false;
-    const [showEdit, setShowEdit] = useState(defaultShow);
-
-
-    // Modal show/close function
-    const handleCloseEdit = () => setShowEdit(false);
-    const handleShowEdit = () => setShowEdit(true);
-
-    function addChange() {
-        let tab = [...sumData];
-        // setShowEdit(defaultShow);
-        console.log("proboje zmiany")
-        return setSumData(tab);
-    }
-    // Handle modal form values
-    const shiftAutor = e => {
-        const { value } = e.target;
-        setData(prevState => ({
-            ...prevState,
-            // status: "To Do",
-            name: value
-        }))
-    }
-    const shiftTitle = e => {
-        const { value } = e.target;
-        setData(prevState => ({
-            ...prevState,
-            // status: "To Do",
-            title: value.trim()
-        }))
-    };
-    const shiftCat = e => {
-        const { value } = e.target;
-        setData(prevState => ({
-            ...prevState,
-            category: value
-        }))
-    }
-    const shiftPri = e => {
-        const { value } = e.target;
-        setData(prevState => ({
-            ...prevState,
-            priority: value
-        }))
-    }
-
-
-    const data = [sumData]
     // Table counter
     const count = sumData.length;
     // CSV export headers. To export use https://www.npmjs.com/package/react-csv
@@ -110,9 +55,9 @@ export default function TodoList(props) {
 
 
         const title = "To Do List";
-        const headers = [["Title", "Comments", "Category", "Priority"]];
+        const headers = [["Title", "Comments", "Category", "Priority", "Status"]];
 
-        const data = sumData.map(elt => [elt.title, elt.name, elt.category, elt.priority]);
+        const data = sumData.map(elt => [elt.title, elt.name, elt.category, elt.priority, elt.status]);
 
         let content = {
             startY: 50,
@@ -239,8 +184,6 @@ export default function TodoList(props) {
                 changeAutor={changeAutor}
                 changeCat={changeCat}
                 changePri={changePri}
-                changeStatus={changeStatus}
-                handleChangeWho={handleChangeWho}
             />
             <div className="container-list">
                 <div>
@@ -291,7 +234,6 @@ export default function TodoList(props) {
                                 return (
                                     <>
                                     <ToDoItem
-                                        handleShowEdit={handleShowEdit}
                                         key={index}
                                         id={index}
                                         index={index}
@@ -315,8 +257,6 @@ export default function TodoList(props) {
                                         onDrop={onDrop}
                                         dragAndDrop={dragAndDrop}
                                         onDragLeave={onDragLeave}
-                                        changeStatus={changeStatus}
-                                        changeStatusItem={changeStatusItem}
                                     />
                                     </>
                                 )
