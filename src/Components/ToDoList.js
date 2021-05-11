@@ -172,7 +172,7 @@ export default function TodoList(props) {
     // }, [sumData])
     return (
         <>
-            
+
             <ModalBox
                 show={show}
                 handleShow={handleShow}
@@ -199,7 +199,7 @@ export default function TodoList(props) {
                             <Form>
                                 <Form.Group controlId="exampleForm.SelectCustom">
                                     <Form.Label>Sort:</Form.Label>
-                                    <Form.Control as="select" custom value={sort} onClick={sorted} onChange={setSortValue}>
+                                    <Form.Control as="select" placeholder="Sort" custom value={sort} onClick={sorted} onChange={setSortValue}>
                                         <option value="title">Title</option>
                                         <option value="name">Autor</option>
                                         <option value="category">Category</option>
@@ -207,7 +207,7 @@ export default function TodoList(props) {
                                     </Form.Control>
                                 </Form.Group>
                             </Form>
-                            <Form>
+                            {/* <Form>
                                 <Form.Group controlId="exampleForm.SelectCustom">
                                     <Form.Label>Category Filter:</Form.Label>
                                     <Form.Control as="select" custom onClick={filter}>
@@ -219,50 +219,52 @@ export default function TodoList(props) {
                                         <option value="Chemistry">Chemistry</option>
                                     </Form.Control>
                                 </Form.Group>
-                            </Form>
-                            <div>
+                            </Form> */}
+                            <div className="clear-button-container">
                                 <Button onClick={clearAll} variant="primary" className="btn-rmv">Clear All</Button>
                                 <Button onClick={ClearFilter}>Clear Filters</Button>
                             </div>
                         </div>
                     </div>
-                    <Table striped bordered hover>
-                        <tbody>
-                            {sumData.map((d, index) => {
-                                // console.log(d.category)
-                                // console.log(d)
-                                return (
-                                    <>
-                                    <ToDoItem
-                                        key={index}
-                                        id={index}
-                                        index={index}
-                                        d={d}
-                                        onCheck={removeItem}
-                                        setData={setData}
-                                        handleShow={handleShow}
-                                        handleClose={handleClose}
-                                        show={show}
-                                        add={add}
-                                        data={d}
-                                        clearAll={clearAll}
-                                        sumData={sumData}
-                                        changeTitle={changeTitle}
-                                        changeAutor={changeAutor}
-                                        changeCat={changeCat}
-                                        changePri={changePri}
-                                        setSumData={setSumData}
-                                        onDragStart={onDragStart}
-                                        onDragOver={onDragOver}
-                                        onDrop={onDrop}
-                                        dragAndDrop={dragAndDrop}
-                                        onDragLeave={onDragLeave}
-                                    />
-                                    </>
-                                )
-                            })}
-                        </tbody>
-                    </Table>
+                    <div className="table-container">
+                        <Table striped bordered hover>
+                            <tbody>
+                                {sumData.map((d, index) => {
+                                    // console.log(d.category)
+                                    // console.log(d)
+                                    return (
+                                        <>
+                                            <ToDoItem
+                                                key={index}
+                                                id={index}
+                                                index={index}
+                                                d={d}
+                                                onCheck={removeItem}
+                                                setData={setData}
+                                                handleShow={handleShow}
+                                                handleClose={handleClose}
+                                                show={show}
+                                                add={add}
+                                                data={d}
+                                                clearAll={clearAll}
+                                                sumData={sumData}
+                                                changeTitle={changeTitle}
+                                                changeAutor={changeAutor}
+                                                changeCat={changeCat}
+                                                changePri={changePri}
+                                                setSumData={setSumData}
+                                                onDragStart={onDragStart}
+                                                onDragOver={onDragOver}
+                                                onDrop={onDrop}
+                                                dragAndDrop={dragAndDrop}
+                                                onDragLeave={onDragLeave}
+                                            />
+                                        </>
+                                    )
+                                })}
+                            </tbody>
+                        </Table>
+                    </div>
                     {sumData.length !== 0 ? (
                         <>
                             {/* <CSVLink data={data[0]} headers={headers2} filename={"ToDo List.csv"} separator={';'}>
