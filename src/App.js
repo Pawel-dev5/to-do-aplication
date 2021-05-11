@@ -99,19 +99,22 @@ function App() {
       // });
   }
   // Handle modal form values
-  const changeAutor = e => {
+  const changeAutor = (e) => {
+    const index = sumData.length;
+
     const { value } = e.target;
     setData(prevState => ({
       ...prevState,
-      // status: "To Do",
-      name: value
+      status: "",
+      name: value,
+      id: index
     }))
   }
   const changeTitle = e => {
     const { value } = e.target;
     setData(prevState => ({
       ...prevState,
-      // status: "To Do",
+      status: "",
       title: value.trim()
     }))
   };
@@ -129,30 +132,6 @@ function App() {
       priority: value
     }))
   }
-  // const changeStatus = () => {
-  //   // e.preventDefault();
-  //   // const doneLine = document.getElementsByTagName('tr').classList.add('done');
-  //   // const doneLine = document.getElementsByClassName("mark-box");
-  //   // const classes = doneLine.classList;
-  //   // classes.removeItem("mark-box");
-  //   // doneLine.textContent = classes
-  //   // const { value } = e.target;
-  //   // document.getElementsByClassName("clear-container").style.display = "none"
-  //   const icon = document.getElementsByClassName("on-icon")
-  //   console.log(icon)
-
-  //   // setData(prevState => ({
-  //   //   ...prevState,
-  //   //   status: "To Do"
-  //   // }))
-  //   //  console.log(value)
-  // }
-  // const changeStatus = () => {
-  //   setData(prevData => ([{
-  //     ...prevData,
-  //     status: "done"
-  //   }]))
-  // }
 
   const changeStatus = () => {
     if (data.status.length === 0) {

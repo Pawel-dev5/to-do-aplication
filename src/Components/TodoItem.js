@@ -52,46 +52,30 @@ export default function ToDoItem(props) {
         } else {
             setEditData(prevState => ({
                 ...prevState,
-                status: ""
+                status: "To Do"
             })
             )
-        
-            // setSumData(prevState => ({
-            //         ...prevState,
-            //         editData
-            //     }
-            //     ))
         }
-        let newTab = [...sumData, editData]
-        setSumData(newTab)
-        console.log(sumData)
-        console.log(editData)
-
-        // const changeStatusItems = (id) => {
-        // console.log(editData.status)
-        // setEditData({
-        //     ...editData,
-        //     status: "done"
-        // })
-        // };
-        // changeStatusItems(id)
-        // return editData
-        // let newTab = [...sumData, editData]
-        // setSumData(newTab)
-        // return setSumData(prevState => ({
-        //     ...prevState,
-        //     changeStatusItems(id)
-        // }))
     }
-    // console.log(editData)
-    // setSumData(prevState => ({
-    //     ...prevState,
-    //     editData
-    // }
-    // ))
-    // let newTab = [...sumData, editData]
-    // setSumData(newTab)
-    // console.log(sumData)
+    
+    const updateItem = (id, whichvalue, newvalue) => {
+        var index = sumData.findIndex(x => x.id === id);
+        console.log(index)
+
+        let g = sumData[index]
+        g[whichvalue] = newvalue
+        if (index === -1) {
+            // handle error
+            console.log('no match')
+        }
+        else
+            setSumData([
+                ...sumData.slice(0, index),
+                g,
+                ...sumData.slice(index + 1)
+            ]
+            );
+    }
 
     return (
         <>
@@ -109,11 +93,22 @@ export default function ToDoItem(props) {
                     {/* <i className="bi bi-check"></i> */}
                     {!d.status ? (
                         <>
-                            <FontAwesomeIcon onClick={changeStatusItem} icon={faCircle} />
+                            <FontAwesomeIcon
+                                // onClick={changeStatusItem}
+                                // onClick={(e) => {
+                                //     d.status = e.target.value;
+                                //     setSumData([...sumData]);
+                                // }}
+                                // value="Done"
+                                onClick={() => updateItem(id, 'status', 'Done')}
+                                icon={faCircle} />
                         </>
                     ) : (
                         <>
-                            <FontAwesomeIcon onClick={changeStatusItem} icon={faCheckCircle} />
+                            <FontAwesomeIcon
+                                onClick={() => updateItem(id, 'status', '')}
+                                icon={faCheckCircle}
+                            />
                         </>
                     )}
                     <div className="on-icon">
