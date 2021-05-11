@@ -14,6 +14,8 @@ export default function ModalBox(props) {
         add,
         show,
         handleClose,
+        changeStatus,
+        handleChangeWho
     } = props;
     return (
         <>
@@ -23,6 +25,7 @@ export default function ModalBox(props) {
                 </Modal.Header>
                 <Modal.Body>
                     <AddForm
+                        handleChangeWho={handleChangeWho}
                         add={add}
                         data={data}
                         sumData={sumData}

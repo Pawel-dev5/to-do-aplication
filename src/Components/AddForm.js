@@ -4,7 +4,8 @@ export default function AddForm(props) {
         changeTitle,
         changeAutor,
         changeCat,
-        changePri
+        changePri,
+        handleChangeWho
     } = props;
     return (
         <>
@@ -17,7 +18,7 @@ export default function AddForm(props) {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Category</Form.Label>
-                    <Form.Control as="select" onChange={changeCat}>
+                    {/* <Form.Control as="select" onChange={changeCat}>
                         <option> </option>
                         <option>Fruits</option>
                         <option>Vegetables</option>
@@ -25,18 +26,27 @@ export default function AddForm(props) {
                         <option>Drinks</option>
                         <option>Meat</option>
                         <option>Chemistry</option>
-                    </Form.Control>
+                    </Form.Control> */}
+                    <div>
+                    <button id="helpButtons" type="button" value="Fruits" onClick={handleChangeWho}>Fruits</button>
+                    <button id="helpButtons" type="button" value="Vegetables" onClick={handleChangeWho}>Vegetables</button>
+                    <button id="helpButtons" type="button" value="Cheese" onClick={handleChangeWho}>Cheese</button>
+                    <button id="helpButtons" type="button" value="Drinks" onClick={handleChangeWho}>Drinks</button>
+                    <button id="helpButtons" type="button" value="Meat" onClick={handleChangeWho}>Meat</button>
+                    <button id="helpButtons" type="button" value="Chemistry" onClick={handleChangeWho}>Chemistry</button>
+
+                    </div>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Prioryty</Form.Label>
-                    <Form.Control as="select" onChange={changePri}>
-                        <option> </option>
-                        <option>1</option>
-                        <option>2</option>
-                        <option>3</option>
-                        <option>4</option>
-                        <option>5</option>
-                    </Form.Control>
+                    <div>
+                    <button id="helpButtons" type="button" value="1" onClick={changePri}>1</button>
+                    <button id="helpButtons" type="button" value="2" onClick={changePri}>2</button>
+                    <button id="helpButtons" type="button" value="3" onClick={changePri}>3</button>
+                    <button id="helpButtons" type="button" value="4" onClick={changePri}>4</button>
+                    <button id="helpButtons" type="button" value="5" onClick={changePri}>5</button>
+
+                    </div>
                 </Form.Group>
             </Form>
         </>

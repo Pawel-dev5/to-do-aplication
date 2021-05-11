@@ -14,10 +14,16 @@ function App() {
   const [show, setShow] = useState(defaultShow);
   const [sumData, setSumData] = useState(storageData || []);
   const [sumDataCopy, setSumDataCopy] = useState([]);
-  const [data, setData] = useState([]);
+  const [data, setData] = useState({
+    title: "",
+    name: "",
+    category: "",
+    priority: "",
+    status: ""
+  });
   const [sort, setSort] = useState("");
   const [filtr, setFiltr] = useState("");
-  // console.log(sumData)
+  console.log(sumData)
   // console.log(sumDataCopy)
   // console.log(data)
 
@@ -30,6 +36,7 @@ function App() {
     setShow(defaultShow);
     return setSumData(tab);
   }
+
   //use useeffect to save the post in locastorage with the method setIntem()
   useEffect(() => {
     localStorage.setItem("sumData", JSON.stringify(sumData));
@@ -77,20 +84,22 @@ function App() {
     return setSumData([])
   }
   // Handle modal form values
-  const changeTitle = e => {
-    const { value } = e.target;
-    setData(prevState => ({
-      ...prevState,
-      title: value.trim()
-    }))
-  };
   const changeAutor = e => {
     const { value } = e.target;
     setData(prevState => ({
       ...prevState,
+      // status: "To Do",
       name: value
     }))
   }
+  const changeTitle = e => {
+    const { value } = e.target;
+    setData(prevState => ({
+      ...prevState,
+      // status: "To Do",
+      title: value.trim()
+    }))
+  };
   const changeCat = e => {
     const { value } = e.target;
     setData(prevState => ({
@@ -105,6 +114,59 @@ function App() {
       priority: value
     }))
   }
+  // const changeStatus = () => {
+  //   // e.preventDefault();
+  //   // const doneLine = document.getElementsByTagName('tr').classList.add('done');
+  //   // const doneLine = document.getElementsByClassName("mark-box");
+  //   // const classes = doneLine.classList;
+  //   // classes.removeItem("mark-box");
+  //   // doneLine.textContent = classes
+  //   // const { value } = e.target;
+  //   // document.getElementsByClassName("clear-container").style.display = "none"
+  //   const icon = document.getElementsByClassName("on-icon")
+  //   console.log(icon)
+
+  //   // setData(prevState => ({
+  //   //   ...prevState,
+  //   //   status: "To Do"
+  //   // }))
+  //   //  console.log(value)
+  // }
+  // const changeStatus = () => {
+  //   setData(prevData => ([{
+  //     ...prevData,
+  //     status: "done"
+  //   }]))
+  // }
+
+  const changeStatus = () => {
+    if (data.status.length === 0) {
+      // e.preventDefault();
+      return setData(prevState => ({
+        ...prevState,
+        status: "Done"
+      }))
+    } else {
+      return setData(prevState => ({
+        ...prevState,
+        status: ""
+      }))
+    }
+  };
+
+  // if (data.status.length === 0) {
+    
+  // }
+console.log(data.status.length)
+
+  const handleChangeWho = e => {
+    const { value } = e.target;
+    setData(prevState => ({
+      ...prevState,
+      category: value
+    }))
+  };
+
   return (
     <div className="App">
       <PageGuide />
@@ -130,6 +192,8 @@ function App() {
         filter={filter}
         setFilterValue={setFilterValue}
         filtr={filtr}
+        changeStatus={changeStatus}
+        handleChangeWho={handleChangeWho}
       />
     </div>
   );

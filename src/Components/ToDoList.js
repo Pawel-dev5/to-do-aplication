@@ -9,8 +9,11 @@ import { CSVLink } from "react-csv";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
 import { useState } from "react";
+import Modal from 'react-bootstrap/Modal';
+// import Button from 'react-bootstrap/Button';
+// import Form from 'react-bootstrap/Form';
 
-export default function FilmList(props) {
+export default function TodoList(props) {
     const {
         changeTitle,
         changeAutor,
@@ -31,8 +34,57 @@ export default function FilmList(props) {
         setSumData,
         filter,
         setFilterValue,
+        changeStatus,
+        handleChangeWho
         // filtr
     } = props;
+
+    const defaultShow = false;
+    const [showEdit, setShowEdit] = useState(defaultShow);
+
+
+    // Modal show/close function
+    const handleCloseEdit = () => setShowEdit(false);
+    const handleShowEdit = () => setShowEdit(true);
+
+    function addChange() {
+        let tab = [...sumData];
+        // setShowEdit(defaultShow);
+        console.log("proboje zmiany")
+        return setSumData(tab);
+    }
+    // Handle modal form values
+    const shiftAutor = e => {
+        const { value } = e.target;
+        setData(prevState => ({
+            ...prevState,
+            // status: "To Do",
+            name: value
+        }))
+    }
+    const shiftTitle = e => {
+        const { value } = e.target;
+        setData(prevState => ({
+            ...prevState,
+            // status: "To Do",
+            title: value.trim()
+        }))
+    };
+    const shiftCat = e => {
+        const { value } = e.target;
+        setData(prevState => ({
+            ...prevState,
+            category: value
+        }))
+    }
+    const shiftPri = e => {
+        const { value } = e.target;
+        setData(prevState => ({
+            ...prevState,
+            priority: value
+        }))
+    }
+
 
     const data = [sumData]
     // Table counter
@@ -174,6 +226,7 @@ export default function FilmList(props) {
     // }, [sumData])
     return (
         <>
+            
             <ModalBox
                 show={show}
                 handleShow={handleShow}
@@ -185,20 +238,18 @@ export default function FilmList(props) {
                 changeAutor={changeAutor}
                 changeCat={changeCat}
                 changePri={changePri}
+                changeStatus={changeStatus}
+                handleChangeWho={handleChangeWho}
             />
             <div className="container-list">
                 <div>
                     <div className="header-container">
-                        <Button variant="primary" onClick={handleShow} >
-                            New Task
-                        <FontAwesomeIcon className="add-icon" icon={faPlusCircle} />
-                        </Button>
                         <div className="clear-container">
                             <h4>List Name: {count}</h4>
-                            <div>
-                                <Button onClick={clearAll} variant="primary" className="btn-rmv">Clear All</Button>
-                                <Button onClick={ClearFilter}>Clear Filters</Button>
-                            </div>
+                            <Button variant="primary" onClick={handleShow} >
+                                New Task
+                        <FontAwesomeIcon className="add-icon" icon={faPlusCircle} />
+                            </Button>
                         </div>
                         <div className="filter-container">
                             <Form>
@@ -218,20 +269,28 @@ export default function FilmList(props) {
                                     <Form.Control as="select" custom onClick={filter}>
                                         <option value="Fruits" onChange={setFilterValue}>Fruits</option>
                                         <option value="Vegetables" onChange={setFilterValue}>Vegetables</option>
-                                        <option value="Cheese"  onChange={setFilterValue}>Cheese</option>
-                                        <option value="Drinks"  onChange={setFilterValue}>Drinks</option>
+                                        <option value="Cheese" onChange={setFilterValue}>Cheese</option>
+                                        <option value="Drinks" onChange={setFilterValue}>Drinks</option>
                                         <option value="Meat" onChange={setFilterValue}>Meat</option>
                                         <option value="Chemistry">Chemistry</option>
                                     </Form.Control>
                                 </Form.Group>
                             </Form>
+                            <div>
+                                <Button onClick={clearAll} variant="primary" className="btn-rmv">Clear All</Button>
+                                <Button onClick={ClearFilter}>Clear Filters</Button>
+                            </div>
                         </div>
                     </div>
                     <Table striped bordered hover>
                         <tbody>
                             {sumData.map((d, index) => {
+                                // console.log(d.category)
+                                // console.log(d)
                                 return (
+                                    <>
                                     <ToDoItem
+                                        handleShowEdit={handleShowEdit}
                                         key={index}
                                         id={index}
                                         index={index}
@@ -255,7 +314,9 @@ export default function FilmList(props) {
                                         onDrop={onDrop}
                                         dragAndDrop={dragAndDrop}
                                         onDragLeave={onDragLeave}
+                                        changeStatus={changeStatus}
                                     />
+                                    </>
                                 )
                             })}
                         </tbody>
@@ -274,10 +335,10 @@ export default function FilmList(props) {
                             </Button>
                         </>
                     ) : (
-                            <>
-                                <p>Aby pobrać tabelę dodaj film</p>
-                            </>
-                        )}
+                        <>
+                            <p>Add task to list</p>
+                        </>
+                    )}
                 </div>
             </div>
         </>

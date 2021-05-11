@@ -202,3 +202,14 @@ td > .table {
     min-width: 70px;
   }
 }
+.done {
+  text-decoration-line: line-through;
+  color: grey;
+}
+.done-icon {
+  display: none;
+}
+.in-progress-icon > path{
+  color: red;
+  border: 1px solid green;
+}

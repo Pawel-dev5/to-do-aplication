@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTrash, faEdit, faArrowsAltV } from '@fortawesome/free-solid-svg-icons';
+import { faTrash, faEdit, faArrowsAltV, faCheckCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -15,108 +15,51 @@ export default function ToDoItem(props) {
         onDrop,
         dragAndDrop,
         index,
-        onDragLeave
+        onDragLeave,
+        changeTitle,
+        changeAutor,
+        changeCat,
+        changePri,
+        handleClose,
+        handleShow,
+        changeStatus,
+        setData,
+        sumData,
+        data,
+        setSumData,
+        handleShowEdit
     } = props;
     const defaultShow = false;
-    const [show, setShow] = useState(defaultShow);
+    const [showEdit, setShowEdit] = useState(defaultShow);
     const [editData, setEditData] = useState(d);
     const [editedData, setEditedData] = useState({});
-    // console.log(d)
-    function showw() {
-        console.log(editedData)
-        handleShow()
-        return setEditData(d)
+    const [categoryColor, setCategoryColor] = useState(d.category);
+    const [color, setColor] = useState("mark-box");
 
-    }
-    // console.log(editedData)
 
-    const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    // function showw() {
+    //     console.log(editedData)
+    //     handleShow()
+    //     return setEditData(d)
+    // }
 
-    function add() {
-        // let tab = [...sumData, data];
-        setShow(defaultShow);
-        return setEditedData(editData);
-    }
-
-    // Handle modal form values
-    const changeTitle = e => {
-        const { value } = e.target;
-        setEditData(prevState => ({
+    const changeStatusItem = () => {
+        if (editData.status.length === 0) {
+          // e.preventDefault();
+          return setEditData(prevState => ({
             ...prevState,
-            title: value.trim()
-        }))
-    };
-    const changeAutor = e => {
-        const { value } = e.target;
-        setEditData(prevState => ({
+            status: "Done"
+          }))
+        } else {
+          return setEditData(prevState => ({
             ...prevState,
-            name: value
-        }))
-    }
-    const changeCat = e => {
-        const { value } = e.target;
-        setEditData(prevState => ({
-            ...prevState,
-            category: value
-        }))
-    }
-    const changePri = e => {
-        const { value } = e.target;
-        setEditData(prevState => ({
-            ...prevState,
-            priority: value
-        }))
-    }
+            status: ""
+          }))
+        }
+      };
 
     return (
         <>
-            <Modal show={show} onHide={handleClose} data={d}>
-                <Modal.Header closeButton>
-                    <Modal.Title>Dodaj film</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <Form>
-                        <Form.Group controlId="exampleForm.ControlInput1">
-                            <Form.Control type="text" placeholder={d.title} onChange={changeTitle} />
-                        </Form.Group>
-                        <Form.Group controlId="exampleForm.ControlInput1">
-                            <Form.Control type="text" placeholder={d.name} onChange={changeAutor} />
-                        </Form.Group>
-                        <Form.Group controlId="exampleForm.ControlSelect1">
-                            <Form.Label>Category</Form.Label>
-                            <Form.Control as="select" value={d.category} onChange={changeCat}>
-                                <option> </option>
-                                <option>Friuts</option>
-                                <option>Vegetables</option>
-                                <option>Meat</option>
-                                <option>Cheese and Milk</option>
-                                <option>Chemistry</option>
-                                <option>Others</option>
-                            </Form.Control>
-                        </Form.Group>
-                        <Form.Group controlId="exampleForm.ControlSelect1">
-                            <Form.Label>Priority</Form.Label>
-                            <Form.Control as="select" value={d.priority} onChange={changePri}>
-                                <option> </option>
-                                <option>1</option>
-                                <option>2</option>
-                                <option>3</option>
-                                <option>4</option>
-                                <option>5</option>
-                            </Form.Control>
-                        </Form.Group>
-                    </Form>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
-                        Zamknij
-                    </Button>
-                    <Button variant="primary" onClick={add} >
-                        Zapisz
-                    </Button>
-                </Modal.Footer>
-            </Modal>
             <tr
                 key={index}
                 data-position={index}
@@ -125,21 +68,38 @@ export default function ToDoItem(props) {
                 onDragOver={onDragOver}
                 onDrop={onDrop}
                 onDragLeave={onDragLeave}
-                className={dragAndDrop && dragAndDrop.draggedTo === Number(index) ? "dropArea" : ""}
+                className={dragAndDrop && dragAndDrop.draggedTo === Number(index) ? "dropArea" : "" && "todo"}
             >
-                <td><i class="bi bi-check"></i></td>
+                <td>
+                    {/* <i className="bi bi-check"></i> */}
+                    {!editData.status ? (
+                        <>
+                            <FontAwesomeIcon  onClick={changeStatusItem} icon={faCircle} />
+                        </>
+                    ) : (
+                        <>
+                            <FontAwesomeIcon  onClick={changeStatusItem} icon={faCheckCircle} />
+                        </>
+                    )}
+                    <div className="on-icon">
+                        {/* <button id="helpButtons" type="button" value="Done" onClick={changeStatus}> */}
+                            {/* <FontAwesomeIcon className="in-progress-icon" onClick={changeStatus} icon={faCircle} /> */}
+                        {/* </button> */}
+                    </div>
+                    {/* <FontAwesomeIcon className="done-icon"  icon={faCheckCircle} /> */}
+                </td>
                 <td>
                     <table className="table table-striped table-bordered table-hover inline-table">
                         <tbody>
-                            <tr>
+                            <tr className={`${editData.status ? "done" : ""}`}>
                                 <td>
-                                    {d.title}
+                                    {editData.title}
                                 </td>
                             </tr>
-                            <tr>
+                            <tr className={`${editData.status ? "done" : ""}`}>
                                 <td>
                                     <p>
-                                        {d.name}
+                                        {editData.name}
                                     </p>
                                 </td>
                             </tr>
@@ -148,8 +108,7 @@ export default function ToDoItem(props) {
                 </td>
                 <td>
                     <div className="inline-table-box">
-
-                        <div className="mark-box">
+                        <div className={`${color} ${editData.status ? "done" : ""}`}>
                             <p>
                                 {d.category}
                             </p>
@@ -158,17 +117,16 @@ export default function ToDoItem(props) {
                 </td>
                 <td>
                     <div className="inline-table-box">
-
-                        <div className="mark-box">
+                        <div className={`${color} ${editData.status ? "done" : ""}`}>
                             <p>
-                                {d.priority}
+                                {editData.priority}
                             </p>
                         </div>
                     </div>
                 </td>
                 <td>
                     <FontAwesomeIcon className="fa-lg" icon={faArrowsAltV} />
-                    <FontAwesomeIcon className="icon-edit" onClick={showw} icon={faEdit} />
+                    <FontAwesomeIcon className="icon-edit" onClick={handleShowEdit} icon={faEdit} />
                     <FontAwesomeIcon className="icon-delete" onClick={() => { onCheck(id) }} icon={faTrash} />
                 </td>
             </tr>
