@@ -106,6 +106,7 @@ function App() {
   };
   const changeCat = e => {
     const { value } = e.target;
+    console.log(value)
     setData(prevState => ({
       ...prevState,
       category: value
@@ -121,7 +122,6 @@ function App() {
 
   const changeStatus = () => {
     if (data.status.length === 0) {
-      // e.preventDefault();
       return setData(prevState => ({
         ...prevState,
         status: "Done"

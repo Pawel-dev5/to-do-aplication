@@ -8,10 +8,12 @@
   text-align: left;
   padding-top: 30px;
   background-color: black;
-  min-height: 1000px;
   font-family: "Helvetica", sans-serif;
   background-position-x: center;
   color: white;
+}
+body {
+  padding: 0 !important;
 }
 .modal-content,
 .react-joyride__tooltip {
@@ -23,6 +25,37 @@
 .App-logo {
   height: 40vmin;
   pointer-events: none;
+}
+.btn-secondary:not(:disabled):not(.disabled).active {
+  background-color: black;
+}
+.radio-buttons {
+  background-color: #14aaf5;
+  border-radius: 35px !important;
+  width: -moz-fit-content;
+  width: fit-content;
+  max-height: 30px;
+  font-size: 13px !important;
+}
+.form-control {
+  max-width: 95%;
+}
+@media (max-width: 767px) {
+  .form-control {
+    max-width: 92%;
+  } 
+}
+.btn-group {
+  display: block;
+}
+.btn {
+  border-radius: 35px;
+}
+.modal {
+  padding-left: 0;
+}
+.priority-check-container > div > label {
+  min-width: 20px;
 }
 
 @media (prefers-reduced-motion: no-preference) {
@@ -252,6 +285,6 @@ tbody > tr > td:nth-child(4) {
   display: flex;
   flex-direction: row;
 }
-.custom-select > option {
+/* .custom-select > option {
   background-color: red;
-}
+} */

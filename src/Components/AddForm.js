@@ -1,11 +1,32 @@
 import Form from 'react-bootstrap/Form';
+import ButtonGroup from 'react-bootstrap/ButtonGroup'
+import ToggleButton from 'react-bootstrap/ToggleButton'
+import { useState } from 'react'
 export default function AddForm(props) {
     const {
         changeTitle,
         changeAutor,
         changeCat,
         changePri,
+        data
     } = props;
+
+    const categories = [
+        { name: 'Friuts', value: 'Friuts' },
+        { name: 'Vegetables', value: 'Vegetables' },
+        { name: 'Cheese', value: 'Cheese' },
+        { name: 'Drinks', value: 'Drinks' },
+        { name: 'Meat', value: 'Meat' },
+        { name: 'Chemistry', value: 'Chemistry' },
+    ];
+    const prioryties = [
+        { name: '1', value: '1' },
+        { name: '2', value: '2' },
+        { name: '3', value: '3' },
+        { name: '4', value: '4' },
+        { name: '5', value: '5' },
+        { name: '6', value: '6' },
+    ];
     return (
         <>
             <Form>
@@ -17,25 +38,42 @@ export default function AddForm(props) {
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Category</Form.Label>
-                    <div>
-                        <button id="helpButtons" type="button" value="Fruits" onClick={changeCat}>Fruits</button>
-                        <button id="helpButtons" type="button" value="Vegetables" onClick={changeCat}>Vegetables</button>
-                        <button id="helpButtons" type="button" value="Cheese" onClick={changeCat}>Cheese</button>
-                        <button id="helpButtons" type="button" value="Drinks" onClick={changeCat}>Drinks</button>
-                        <button id="helpButtons" type="button" value="Meat" onClick={changeCat}>Meat</button>
-                        <button id="helpButtons" type="button" value="Chemistry" onClick={changeCat}>Chemistry</button>
-
-                    </div>
+                    <ButtonGroup toggle>
+                        {categories.map((radio, idx) => (
+                            <ToggleButton
+                                key={idx}
+                                type="radio"
+                                variant="secondary"
+                                name="radio"
+                                className="radio-buttons"
+                                value={radio.value}
+                                checked={data.category === radio.value}
+                                onChange={changeCat}
+                            >
+                                {radio.name}
+                            </ToggleButton>
+                        ))}
+                    </ButtonGroup>
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Prioryty</Form.Label>
-                    <div>
-                        <button id="helpButtons" type="button" value="1" onClick={changePri}>1</button>
-                        <button id="helpButtons" type="button" value="2" onClick={changePri}>2</button>
-                        <button id="helpButtons" type="button" value="3" onClick={changePri}>3</button>
-                        <button id="helpButtons" type="button" value="4" onClick={changePri}>4</button>
-                        <button id="helpButtons" type="button" value="5" onClick={changePri}>5</button>
-
+                    <div className="priority-check-container">
+                        <ButtonGroup toggle>
+                            {prioryties.map((radio, idx) => (
+                                <ToggleButton
+                                    key={idx}
+                                    type="radio"
+                                    variant="secondary"
+                                    name="radio"
+                                    className="radio-buttons"
+                                    value={radio.value}
+                                    checked={data.priority === radio.value}
+                                    onChange={changePri}
+                                >
+                                    {radio.name}
+                                </ToggleButton>
+                            ))}
+                        </ButtonGroup>
                     </div>
                 </Form.Group>
             </Form>
