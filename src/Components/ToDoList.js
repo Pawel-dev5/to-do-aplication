@@ -187,6 +187,7 @@ export default function TodoList(props) {
     // useEffect(() => {
     //     console.log("List updated!");
     // }, [sumData])
+    
     return (
         <>
 
@@ -207,7 +208,11 @@ export default function TodoList(props) {
                 <div>
                     <div className="header-container">
                         <div className="clear-container">
-                            <h4>List Name: {count}</h4>
+                            <div className="counter-box">
+                                <h4>To do:</h4>
+                                <h4>{count}</h4>
+                                <h4>{count > 1 ? "tasks" : "task"} </h4>
+                            </div>
                             <Button variant="primary" onClick={handleShow}  >
                                 New Task
                         <FontAwesomeIcon className="add-icon" icon={faPlusCircle} />

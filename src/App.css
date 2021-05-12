@@ -291,26 +291,37 @@ tbody > tr > td:nth-child(4) {
 .meat-color,
 .cheese-color,
 .fruits-color {
-  border-radius: 35px;
+  border-radius: 35px !important;
+  width: -moz-fit-content;
   width: fit-content;
   max-height: 30px;
+  font-size: 13px !important;
 }
 .vege-color {
-  background-color: #aad529;
+  background-color: #aad529 !important;
 }
 .chem-color {
-  background-color: darkturquoise;
+  background-color: darkturquoise !important;
 }
 .drink-color {
-  background-color: darkcyan;
+  background-color: darkcyan !important;
 }
 .fruits-color {
-  background-color: #635ac7;
+  background-color: #635ac7 !important;
 }
 .cheese-color {
-  background-color: orange;
+  background-color: orange !important;
 }
 .meat-color {
-  background-color: tomato;
+  background-color: tomato !important;
 }
 /* END Category colors */
+
+/* Start Counter Header */
+.counter-box {
+  display: flex;
+}
+.counter-box > h4:not(h4:nth-child(1)) {
+  margin-left: 10px;
+}
+/* End Counter Header */
