@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTrash, faEdit, faArrowsAltV, faCheckCircle, faCircle } from '@fortawesome/free-solid-svg-icons';
+// import CategoryColor from "./CategoryColor";
 
 export default function ToDoItem(props) {
     const {
@@ -17,8 +18,33 @@ export default function ToDoItem(props) {
         setSumData,
         handleShowEdit,
     } = props;
-    const [color, setColor] = useState("mark-box");
+    
+    const [color, setColor] = useState(d.category);
+    useEffect(() => {
+        if (d.category === "Vegetables") {
+            setColor("vege-color")
+        } if (d.category === "Chemistry") {
+            setColor("chem-color")
+        } if (d.category === "Drinks") {
+            setColor("drink-color")
+        } if (d.category === "Fruits") {
+            setColor("fruits-color")
+        } if (d.category === "Cheese") {
+            setColor("cheese-color")
+        } if (d.category === "Meat") {
+            setColor("meat-color")
+        }
+    }, [])  
+      // CategoryColor(d)
+    // const color = (d) => {
+    //     CategoryColor(d)
+    // } 
+    // const color = CategoryColor(id)
+    // if (d === "undefined") {
+    //     setColor("mark-box")
+    // } else setColor(color)
 
+    // const color = "vege-color"
     // Update item status & refresh data
     const updateItem = (id, whichvalue, newvalue) => {
         const index = id;
@@ -38,6 +64,7 @@ export default function ToDoItem(props) {
             ]
             );
     }
+
 
     return (
         <>

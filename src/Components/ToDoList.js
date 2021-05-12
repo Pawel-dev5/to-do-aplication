@@ -8,7 +8,8 @@ import { faFileCsv, faFilePdf, faPlusCircle, } from '@fortawesome/free-solid-svg
 import { CSVLink } from "react-csv";
 import { jsPDF } from "jspdf";
 import "jspdf-autotable";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import CategoryColor from "../Components/CategoryColor"
 
 export default function TodoList(props) {
     const {
@@ -33,6 +34,21 @@ export default function TodoList(props) {
         setFilterValue,
         data
     } = props;
+    // const [color, setColor] = useState("");
+    // console.log(sumData)
+    // {sumData.map((d, index) => {
+
+    // })}
+    //     const [color, setColor] = useState("");
+    //     useEffect(() => {
+    //         if (d.category === "Vegetables") {
+    //             setColor("vege-color")
+    //         } if (d.category === "Chemistry") {
+    //             setColor("chem-color")
+    //         } else if (d.category === "Drinks") {
+    //             setColor("drink-color")
+    //         }
+    //     })
 
     // Table counter
     const count = sumData.length;
@@ -232,8 +248,6 @@ export default function TodoList(props) {
                         <Table striped bordered hover>
                             <tbody>
                                 {sumData.map((d, index) => {
-                                    // console.log(d.category)
-                                    // console.log(d)
                                     return (
                                         <>
                                             <ToDoItem
