@@ -31,6 +31,7 @@ export default function TodoList(props) {
         setSumData,
         filter,
         setFilterValue,
+        data
     } = props;
 
     // Table counter
@@ -174,6 +175,7 @@ export default function TodoList(props) {
         <>
 
             <ModalBox
+                data={data}
                 show={show}
                 handleShow={handleShow}
                 handleClose={handleClose}
@@ -190,7 +192,7 @@ export default function TodoList(props) {
                     <div className="header-container">
                         <div className="clear-container">
                             <h4>List Name: {count}</h4>
-                            <Button variant="primary" onClick={handleShow} >
+                            <Button variant="primary" onClick={handleShow}  >
                                 New Task
                         <FontAwesomeIcon className="add-icon" icon={faPlusCircle} />
                             </Button>
