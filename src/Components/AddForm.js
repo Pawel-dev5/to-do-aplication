@@ -32,10 +32,10 @@ export default function AddForm(props) {
         <>
             <Form>
                 <Form.Group controlId="exampleForm.ControlInput1">
-                    <Form.Control type="text" placeholder="Tytuł" onChange={changeTitle} />
+                    <Form.Control type="text" placeholder="Task" onChange={changeTitle} />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlInput1">
-                    <Form.Control type="text" placeholder="Autor" onChange={changeAutor} />
+                    <Form.Control type="text" placeholder="Comment" onChange={changeAutor} />
                 </Form.Group>
                 <Form.Group controlId="exampleForm.ControlSelect1">
                     <Form.Label>Category</Form.Label>
@@ -46,9 +46,9 @@ export default function AddForm(props) {
                                 type="radio"
                                 variant="secondary"
                                 name="radio"
-                                className={`${radio.color} radio-buttons `}
                                 value={radio.value}
                                 checked={data.category === radio.value}
+                                className={`${data.category === radio.value ? radio.color : "radio-buttons"}`}
                                 onChange={changeCat}
                             >
                                 {radio.name}
