@@ -1,7 +1,7 @@
 import Form from 'react-bootstrap/Form';
 import ButtonGroup from 'react-bootstrap/ButtonGroup'
 import ToggleButton from 'react-bootstrap/ToggleButton'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 export default function AddForm(props) {
     const {
         changeTitle,
@@ -12,12 +12,12 @@ export default function AddForm(props) {
     } = props;
 
     const categories = [
-        { name: 'Friuts', value: 'Friuts' },
-        { name: 'Vegetables', value: 'Vegetables' },
-        { name: 'Cheese', value: 'Cheese' },
-        { name: 'Drinks', value: 'Drinks' },
-        { name: 'Meat', value: 'Meat' },
-        { name: 'Chemistry', value: 'Chemistry' },
+        { name: 'Fruits', value: 'Fruits', color: "fruits-color" },
+        { name: 'Vegetables', value: 'Vegetables', color: "vege-color" },
+        { name: 'Cheese', value: 'Cheese', color: "cheese-color" },
+        { name: 'Drinks', value: 'Drinks', color: "drink-color" },
+        { name: 'Meat', value: 'Meat', color: "meat-color" },
+        { name: 'Chemistry', value: 'Chemistry', color: "chem-color" },
     ];
     const prioryties = [
         { name: '1', value: '1' },
@@ -27,6 +27,7 @@ export default function AddForm(props) {
         { name: '5', value: '5' },
         { name: '6', value: '6' },
     ];
+
     return (
         <>
             <Form>
@@ -45,7 +46,7 @@ export default function AddForm(props) {
                                 type="radio"
                                 variant="secondary"
                                 name="radio"
-                                className="radio-buttons"
+                                className={`${radio.color} radio-buttons `}
                                 value={radio.value}
                                 checked={data.category === radio.value}
                                 onChange={changeCat}
